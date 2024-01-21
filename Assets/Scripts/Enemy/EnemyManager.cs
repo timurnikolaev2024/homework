@@ -6,15 +6,17 @@ namespace ShootEmUp
 {
     public sealed class EnemyManager : MonoBehaviour
     {
-        [SerializeField]
-        private EnemyPool _enemyPool;
-
-        [SerializeField]
-        private BulletSystem _bulletSystem;
+        [SerializeField] private EnemyPool _enemyPool;
+        [SerializeField] private BulletSystem _bulletSystem;
         
         private readonly HashSet<GameObject> m_activeEnemies = new();
 
-        private IEnumerator Start()
+        private void Start()
+        {
+            StartCoroutine(SpawnEnemyCoroutine());
+        }
+
+        private IEnumerator SpawnEnemyCoroutine()
         {
             while (true)
             {
@@ -24,18 +26,18 @@ namespace ShootEmUp
                 {
                     if (this.m_activeEnemies.Add(enemy))
                     {
-                        enemy.GetComponent<HitPointsComponent>().hpEmpty += this.OnDestroyed;
+                        enemy.GetComponent<HitPointsComponent>().OnDead += this.OnDead;
                         enemy.GetComponent<EnemyAttackAgent>().OnFire += this.OnFire;
                     }    
                 }
             }
         }
 
-        private void OnDestroyed(GameObject enemy)
+        private void OnDead(GameObject enemy)
         {
             if (m_activeEnemies.Remove(enemy))
             {
-                enemy.GetComponent<HitPointsComponent>().hpEmpty -= this.OnDestroyed;
+                enemy.GetComponent<HitPointsComponent>().OnDead -= this.OnDead;
                 enemy.GetComponent<EnemyAttackAgent>().OnFire -= this.OnFire;
 
                 _enemyPool.UnspawnEnemy(enemy);

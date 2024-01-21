@@ -6,43 +6,42 @@ namespace ShootEmUp
     {
         [SerializeField] private GameObject character; 
         [SerializeField] private GameManager gameManager;
-        [SerializeField] private BulletSystem _bulletSystem;
-        [SerializeField] private BulletConfig _bulletConfig;
+        [SerializeField] private BulletSystem bulletSystem;
+        [SerializeField] private BulletConfig bulletConfig;
         
-        public bool _fireRequired;
-
+        public bool FireRequired;
         private void OnEnable()
         {
-            this.character.GetComponent<HitPointsComponent>().hpEmpty += this.OnCharacterDeath;
+            this.character.GetComponent<HitPointsComponent>().OnDead += this.OnCharacterDeath;
         }
 
         private void OnDisable()
         {
-            this.character.GetComponent<HitPointsComponent>().hpEmpty -= this.OnCharacterDeath;
+            this.character.GetComponent<HitPointsComponent>().OnDead -= this.OnCharacterDeath;
         }
 
         private void OnCharacterDeath(GameObject _) => this.gameManager.FinishGame();
 
         private void FixedUpdate()
         {
-            if (this._fireRequired)
+            if (this.FireRequired)
             {
                 this.OnFlyBullet();
-                this._fireRequired = false;
+                this.FireRequired = false;
             }
         }
 
         private void OnFlyBullet()
         {
             var weapon = this.character.GetComponent<WeaponComponent>();
-            _bulletSystem.FlyBulletByArgs(new BulletSystem.Args
+            bulletSystem.FlyBulletByArgs(new BulletSystem.Args
             {
                 isPlayer = true,
-                physicsLayer = (int) this._bulletConfig.physicsLayer,
-                color = this._bulletConfig.color,
-                damage = this._bulletConfig.damage,
+                physicsLayer = (int) this.bulletConfig.physicsLayer,
+                color = this.bulletConfig.color,
+                damage = this.bulletConfig.damage,
                 position = weapon.Position,
-                velocity = weapon.Rotation * Vector3.up * this._bulletConfig.speed
+                velocity = weapon.Rotation * Vector3.up * this.bulletConfig.speed
             });
         }
     }

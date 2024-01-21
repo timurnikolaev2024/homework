@@ -4,12 +4,8 @@ namespace ShootEmUp
 {
     public sealed class EnemyMoveAgent : MonoBehaviour
     {
-        public bool IsReached
-        {
-            get { return this.isReached; }
-        }
-
         [SerializeField] private MoveComponent moveComponent;
+        public bool IsReached => this.isReached;
 
         private Vector2 destination;
 
@@ -31,6 +27,7 @@ namespace ShootEmUp
             var vector = this.destination - (Vector2) this.transform.position;
             if (vector.magnitude <= 0.25f)
             {
+                Debug.Log("timur reached");
                 this.isReached = true;
                 return;
             }

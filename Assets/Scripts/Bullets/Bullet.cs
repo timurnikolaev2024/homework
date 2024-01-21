@@ -5,40 +5,40 @@ namespace ShootEmUp
 {
     public sealed class Bullet : MonoBehaviour
     {
-        public event Action<Bullet, Collision2D> OnCollisionEntered;
-
-        [NonSerialized] public bool isPlayer;
-        [NonSerialized] public int damage;
-
-        [SerializeField]
+        public bool IsPlayer { get; private set; }
+        public int Damage { get; private set; }
+        
         private new Rigidbody2D rigidbody2D;
-
-        [SerializeField]
         private SpriteRenderer spriteRenderer;
+        private BulletCollisionHandler collisionHandler;
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void Awake()
         {
-            this.OnCollisionEntered?.Invoke(this, collision);
+            rigidbody2D = GetComponent<Rigidbody2D>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            
+            collisionHandler = this.gameObject.AddComponent<BulletCollisionHandler>();
+        }
+        
+        public void Init(BulletSystem.Args args)
+        {
+            this.IsPlayer = args.isPlayer;
+            this.Damage = args.damage;
+            this.rigidbody2D.velocity = args.velocity;
+            this.gameObject.layer = args.physicsLayer;
+            this.transform.position = args.position;
+            this.spriteRenderer.color = args.color;
         }
 
-        public void SetVelocity(Vector2 velocity)
+        public bool IsInBounds(LevelBounds levelBounds)
         {
-            this.rigidbody2D.velocity = velocity;
-        }
-
-        public void SetPhysicsLayer(int physicsLayer)
-        {
-            this.gameObject.layer = physicsLayer;
-        }
-
-        public void SetPosition(Vector3 position)
-        {
-            this.transform.position = position;
-        }
-
-        public void SetColor(Color color)
-        {
-            this.spriteRenderer.color = color;
+            if (levelBounds == null)
+            {
+                return true;
+            }
+            
+            Vector3 position = transform.position;
+            return levelBounds.InBounds(position);
         }
     }
 }
