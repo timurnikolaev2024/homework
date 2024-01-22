@@ -5,40 +5,40 @@ namespace ShootEmUp
 {
     public sealed class Bullet : MonoBehaviour
     {
-        public bool IsPlayer { get; private set; }
-        public int Damage { get; private set; }
-        
+        public event Action<Bullet, Collision2D> OnCollisionEntered;
+
+        [NonSerialized] public bool isPlayer;
+        [NonSerialized] public int damage;
+
+        [SerializeField]
         private new Rigidbody2D rigidbody2D;
+
+        [SerializeField]
         private SpriteRenderer spriteRenderer;
-        private BulletCollisionHandler collisionHandler;
 
-        private void Awake()
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            rigidbody2D = GetComponent<Rigidbody2D>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            
-            collisionHandler = this.gameObject.AddComponent<BulletCollisionHandler>();
-        }
-        
-        public void Init(BulletSystem.Args args)
-        {
-            this.IsPlayer = args.isPlayer;
-            this.Damage = args.damage;
-            this.rigidbody2D.velocity = args.velocity;
-            this.gameObject.layer = args.physicsLayer;
-            this.transform.position = args.position;
-            this.spriteRenderer.color = args.color;
+            this.OnCollisionEntered?.Invoke(this, collision);
         }
 
-        public bool IsInBounds(LevelBounds levelBounds)
+        public void SetVelocity(Vector2 velocity)
         {
-            if (levelBounds == null)
-            {
-                return true;
-            }
-            
-            Vector3 position = transform.position;
-            return levelBounds.InBounds(position);
+            this.rigidbody2D.velocity = velocity;
+        }
+
+        public void SetPhysicsLayer(int physicsLayer)
+        {
+            this.gameObject.layer = physicsLayer;
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            this.transform.position = position;
+        }
+
+        public void SetColor(Color color)
+        {
+            this.spriteRenderer.color = color;
         }
     }
 }

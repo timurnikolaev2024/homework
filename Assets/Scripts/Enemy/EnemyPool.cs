@@ -5,25 +5,28 @@ namespace ShootEmUp
 {
     public sealed class EnemyPool : MonoBehaviour
     {
-        public const int countOfEnemies = 7;
         [Header("Spawn")]
-        [SerializeField] private EnemyPositions enemyPositions;
-        [SerializeField] private GameObject character;
-        [SerializeField] private Transform worldTransform;
+        [SerializeField]
+        private EnemyPositions enemyPositions;
+
+        [SerializeField]
+        private GameObject character;
+
+        [SerializeField]
+        private Transform worldTransform;
+
         [Header("Pool")]
-        [SerializeField] private Transform container;
-        [SerializeField] private GameObject prefab;
+        [SerializeField]
+        private Transform container;
+
+        [SerializeField]
+        private GameObject prefab;
 
         private readonly Queue<GameObject> enemyPool = new();
         
         private void Awake()
         {
-            CreateEnemies();
-        }
-
-        private void CreateEnemies()
-        {
-            for (var i = 0; i < countOfEnemies; i++)
+            for (var i = 0; i < 7; i++)
             {
                 var enemy = Instantiate(this.prefab, this.container);
                 this.enemyPool.Enqueue(enemy);

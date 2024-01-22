@@ -4,14 +4,19 @@ namespace ShootEmUp
 {
     public sealed class InputManager : MonoBehaviour
     {
-        [SerializeField] private GameObject character;
-        [SerializeField] private CharacterController characterController;
-        private float HorizontalDirection { get; set; }
+        public float HorizontalDirection { get; private set; }
+
+        [SerializeField]
+        private GameObject character;
+
+        [SerializeField]
+        private CharacterController characterController;
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                characterController.FireRequired = true;
+                characterController._fireRequired = true;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
