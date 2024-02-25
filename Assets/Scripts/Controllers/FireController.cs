@@ -11,7 +11,7 @@ namespace Controllers
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                this.character.FireComponent.fireAction?.Invoke();
+                this.character.core.FireComponent.fireAction?.Invoke();
             }
         }
     }

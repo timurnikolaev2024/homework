@@ -6,12 +6,11 @@ namespace Controllers
 {
     public class MoveAnimatorController : IUpdate
     {
-        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-
-        private readonly Animator animator;
+        private static readonly int IsMoving = UnityEngine.Animator.StringToHash("IsMoving");
+        private readonly UnityEngine.Animator animator;
         private readonly IAtomicValue<bool> isMoving;
 
-        public MoveAnimatorController(Animator animator, IAtomicValue<bool> isMoving)
+        public MoveAnimatorController(UnityEngine.Animator animator, IAtomicValue<bool> isMoving)
         {
             this.animator = animator;
             this.isMoving = isMoving;

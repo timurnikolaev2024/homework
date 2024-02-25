@@ -1,16 +1,15 @@
 ﻿using Atomic.Elements;
-using UnityEngine;
 
 namespace Controllers
 {
     public class DeathAnimatorController
     {
-        private static readonly int Death = Animator.StringToHash("Death");
+        private static readonly int Death = UnityEngine.Animator.StringToHash("Death");
         
-        private readonly Animator animator;
+        private readonly UnityEngine.Animator animator;
         private readonly IAtomicObservable deathEvent;
 
-        public DeathAnimatorController(Animator animator, IAtomicObservable deathEvent)
+        public DeathAnimatorController(UnityEngine.Animator animator, IAtomicObservable deathEvent)
         {
             this.animator = animator;
             this.deathEvent = deathEvent;

@@ -17,7 +17,6 @@ namespace Mechanics
         }
         private void OnHPChanged(int hp)
         {
-            Debug.Log("timur hp " + hp);
             if(hp <= 0)
                 deathEvent?.Invoke();
         }

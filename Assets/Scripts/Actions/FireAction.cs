@@ -32,7 +32,7 @@ namespace Actions
                 return;
             }
 
-            this.shootAction.Invoke();
+            //this.shootAction.Invoke();
             this.charges.Value--;
             this.shootEvent.Invoke();
         }

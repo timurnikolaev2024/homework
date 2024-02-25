@@ -33,7 +33,7 @@ namespace Mechanics
                 // var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVel, 0.05f);
                 // transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
                 
-                Vector3 moveOffset = this.moveDirection.Value * (this.moveSpeed.Value * time);
+                Vector3 moveOffset = this.moveDirection.Value.normalized * (this.moveSpeed.Value * time);
                 this.transform.position += moveOffset;
             }
         }
