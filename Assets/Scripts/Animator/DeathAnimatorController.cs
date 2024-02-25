@@ -1,4 +1,5 @@
 ﻿using Atomic.Elements;
+using UnityEngine;
 
 namespace Controllers
 {
@@ -16,6 +17,7 @@ namespace Controllers
         }
         private void OnDeath()
         {
+            Debug.Log("timur death");
             this.animator.SetTrigger(Death);
         }
 

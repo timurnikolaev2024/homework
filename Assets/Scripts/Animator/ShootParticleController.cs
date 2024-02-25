@@ -6,10 +6,21 @@ namespace Animator
     public class ShootParticleController
     {
         private ParticleSystem particleSystem;
-        public ShootParticleController(ParticleSystem particleSystem, IAtomicEvent atomicEvent)
+        private IAtomicEvent shootEvent;
+        public ShootParticleController(ParticleSystem particleSystem, IAtomicEvent shootEvent)
         {
             this.particleSystem = particleSystem;
-            atomicEvent.Subscribe(ShowParticle);
+            this.shootEvent = shootEvent;
+        }
+
+        public void OnEnable()
+        {
+            shootEvent.Subscribe(ShowParticle);
+        }
+
+        public void OnDisable()
+        {
+            shootEvent.Unsubscribe(ShowParticle);
         }
 
         private void ShowParticle()

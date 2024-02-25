@@ -31,7 +31,6 @@ namespace Mechanics
         private void OnShoot()
         {
             animator.SetTrigger(Shoot);
-            particle.Play();
         }
     }
 }

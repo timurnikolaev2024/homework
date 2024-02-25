@@ -59,6 +59,7 @@ MonoBehaviour:
         value: 10
     FireComponent:
       _test: {fileID: 6596619994806015659}
+      _bulletPool: {fileID: 0}
       enabled:
         value: 1
       firePoint: {fileID: 1206664684626729914}
@@ -348,7 +349,7 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: fa7f36c71b9e8fa4798df3a931c2fd92, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c1df07940547747ff97dfeccdd5244c6, type: 2}
+      objectReference: {fileID: 9100000, guid: 6bab5c795ba1a432495bf421391d907f, type: 2}
     - target: {fileID: 9500000, guid: fa7f36c71b9e8fa4798df3a931c2fd92, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
