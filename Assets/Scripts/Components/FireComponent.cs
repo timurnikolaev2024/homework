@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Actions;
 using Atomic.Elements;
 using Atomic.Objects;
+using DefaultNamespace;
 using Functions;
 using UnityEngine;
 
@@ -11,8 +12,10 @@ namespace Components
     [Serializable]
     public class FireComponent
     {
+        [SerializeField] private TestAnimationEvent _test;
         public AtomicVariable<bool> enabled = new(true);
-        public AtomicEvent fireEvent;
+        public AtomicEvent firstPhaseFireEvent;
+        public AtomicEvent secondPhaseFireEvent;
 
         public Transform firePoint;
         public MonoBehaviour bulletPrefab;
@@ -21,20 +24,21 @@ namespace Components
         public FireAction fireAction;
         public AndExpression fireCondition;
         public SpawnBulletAction bulletAction;
-        
+        public WeaponRaiseAndShootAction weaponRaiseAndShootAction;
         public void Compose()
         {
             fireCondition = new AndExpression();
             fireCondition.Append(enabled);
             fireCondition.Append(this.charges.AsFunction(it => it.Value > 0));
             
-            this.fireAction.Compose(this.bulletAction, this.charges, this.fireCondition, this.fireEvent);
+            this.fireAction.Compose(this.bulletAction, this.charges, this.fireCondition, this.firstPhaseFireEvent);
             this.bulletAction.Compose(this.firePoint, this.bulletPrefab);
+            weaponRaiseAndShootAction.Compose(this.bulletAction, _test.shootEvent2, secondPhaseFireEvent);
         }
 
         public void Dispose()
         {
-            this.fireEvent?.Dispose();
+            this.firstPhaseFireEvent?.Dispose();
             this.charges?.Dispose();
         }
     }

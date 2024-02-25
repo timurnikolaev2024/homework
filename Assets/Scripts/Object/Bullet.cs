@@ -29,12 +29,10 @@ namespace Object
 
         private void OnCollisionEnter(Collision other)
         {
-            Debug.Log("timur 1");
             if (other.gameObject.TryGetComponent(out AtomicObject target))
             {
                 if (target.Is(ObjectType.Damagable))
                 {
-                    Debug.Log("timur in damage");
                     DealDamageAction.Invoke(target);
                 }
                 

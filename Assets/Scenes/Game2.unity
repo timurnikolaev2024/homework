@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1206664683902207045, guid: 736abe9211a0947df80edc3c2df6391a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1206664683902207050, guid: 736abe9211a0947df80edc3c2df6391a,
         type: 3}
       propertyPath: m_RootOrder
@@ -531,7 +536,7 @@ PrefabInstance:
         type: 3}
       propertyPath: core._test
       value: 
-      objectReference: {fileID: 1830057448}
+      objectReference: {fileID: 0}
     - target: {fileID: 4987052803569189477, guid: 736abe9211a0947df80edc3c2df6391a,
         type: 3}
       propertyPath: FireComponent.firePoint
@@ -576,24 +581,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35077c1074be4010961d9ca37d9d4027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1830057446 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2696589512513775798, guid: 736abe9211a0947df80edc3c2df6391a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1735309788}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1830057448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830057446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebb39fd885864fc68b8a6406a4b26b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1846402475 stripped

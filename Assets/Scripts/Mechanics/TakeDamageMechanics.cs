@@ -17,7 +17,6 @@ namespace Mechanics
 
         public void OnEnable()
         {
-            Debug.Log("timur subs");
             this._takeDamageEvent.Subscribe(OnTakeDamage);
         }
 
@@ -28,10 +27,8 @@ namespace Mechanics
 
         private void OnTakeDamage(int damage)
         {
-            Debug.Log("timur take dmggg" + damage);
             if (_hp.Value > 0)
             {
-                Debug.Log("timur take damage" + damage);
                 _hp.Value = Math.Max(0, _hp.Value - damage);
             }
         }

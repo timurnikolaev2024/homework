@@ -13,7 +13,6 @@ namespace Object
     {
         [SerializeField] private new Collider collider;
         [SerializeField] private Transform transform;
-        [SerializeField] private TestAnimationEvent _test;
 
         [Section] public MoveComponent moveComponent;
         private RotateMechanics rotateMechanics;
@@ -32,13 +31,6 @@ namespace Object
                 it.Compose();
                 it.fireCondition.Append(moveComponent.IsMoving.AsNot());
             });
-            Debug.Log("timur NUL? " + (_test.shootEvent2 == null));
-            _test.shootEvent2.Subscribe(Test);
-        }
-
-        private void Test()
-        {
-            FireComponent.bulletAction?.Invoke();
         }
 
         public void OnEnable()
