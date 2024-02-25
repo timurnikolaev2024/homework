@@ -2,6 +2,7 @@
 using Atomic.Elements;
 using Atomic.Extensions;
 using Atomic.Objects;
+using Controllers;
 using Object;
 using UnityEngine;
 
@@ -12,23 +13,23 @@ namespace Actions
     {
         private Transform firePoint;
         private MonoBehaviour bulletPrefab;
+        private BulletPool bulletPool;
 
-        public void Compose(Transform firePoint, MonoBehaviour bulletPrefab)
+        public void Compose(Transform firePoint, MonoBehaviour bulletPrefab, BulletPool bulletPool)
         {
             this.firePoint = firePoint;
             this.bulletPrefab = bulletPrefab;
+            this.bulletPool = bulletPool;
         }
 
         public void Invoke()
         {
-            MonoBehaviour bullet = GameObject.Instantiate(
-                this.bulletPrefab,
-                this.firePoint.position,
-                this.firePoint.rotation,
-                null
-            );
+            var bullet = bulletPool.GetObjectFromPool();
 
-            IAtomicVariable<Vector3> bulletDirection = bullet.GetComponent<Bullet>().MoveComponent.MoveDirection;
+            bullet.gameObject.transform.position = firePoint.position;
+            bullet.gameObject.transform.rotation = firePoint.rotation;
+
+            IAtomicVariable<Vector3> bulletDirection = bullet.GetComponent<Bullet>().core.MoveComponent.MoveDirection;
             if (bulletDirection != null)
             {
                 bulletDirection.Value = this.firePoint.forward;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Actions;
 using Atomic.Elements;
 using Atomic.Objects;
+using Controllers;
 using DefaultNamespace;
 using Functions;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Components
     public class FireComponent
     {
         [SerializeField] private TestAnimationEvent _test;
+        [SerializeField] private BulletPool _bulletPool;
         public AtomicVariable<bool> enabled = new(true);
         public AtomicEvent firstPhaseFireEvent;
         public AtomicEvent secondPhaseFireEvent;
@@ -32,7 +34,7 @@ namespace Components
             fireCondition.Append(this.charges.AsFunction(it => it.Value > 0));
             
             this.fireAction.Compose(this.bulletAction, this.charges, this.fireCondition, this.firstPhaseFireEvent);
-            this.bulletAction.Compose(this.firePoint, this.bulletPrefab);
+            this.bulletAction.Compose(this.firePoint, this.bulletPrefab, _bulletPool);
             weaponRaiseAndShootAction.Compose(this.bulletAction, _test.shootEvent2, secondPhaseFireEvent);
         }
 

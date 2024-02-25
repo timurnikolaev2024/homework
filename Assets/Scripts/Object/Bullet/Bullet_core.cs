@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using Actions;
-using Atomic.Behaviours;
 using Atomic.Elements;
 using Atomic.Objects;
 using Components;
@@ -9,34 +8,35 @@ using UnityEngine;
 
 namespace Object
 {
-    public class Bullet : AtomicBehaviour
+    [Serializable]
+    public class Bullet_core
     {
+        [SerializeField] private Transform transform;
         [SerializeField] private AtomicVariable<int> damage;
         public MoveComponent MoveComponent;
         public DealDamageAction DealDamageAction;
+        public AtomicEvent dealDamageEvent;
 
-        private void Awake()
+        public void Compose()
         {
-            Compose();
             MoveComponent.Compose(transform);
             DealDamageAction.Compose(damage);
         }
 
-        private void Update()
+        public void Update()
         {
             MoveComponent.OnUpdate(Time.deltaTime);
         }
-
-        private void OnCollisionEnter(Collision other)
+        
+        public void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.TryGetComponent(out AtomicObject target))
             {
                 if (target.Is(ObjectType.Damagable))
                 {
                     DealDamageAction.Invoke(target);
+                    dealDamageEvent?.Invoke();
                 }
-                
-                Destroy(gameObject);
             }
         }
     }

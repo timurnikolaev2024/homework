@@ -216,6 +216,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4429351370155250696, guid: e7e90caebde437b4b80caf6a3b290bc8,
         type: 3}
+    - target: {fileID: 4987052803569189477, guid: 736abe9211a0947df80edc3c2df6391a,
+        type: 3}
+      propertyPath: core.FireComponent._bulletPool
+      value: 
+      objectReference: {fileID: 676098121}
     - target: {fileID: 7274345345467228739, guid: 736abe9211a0947df80edc3c2df6391a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -368,6 +373,7 @@ GameObject:
   - component: {fileID: 676098118}
   - component: {fileID: 676098119}
   - component: {fileID: 676098120}
+  - component: {fileID: 676098121}
   m_Layer: 0
   m_Name: '[System]'
   m_TagString: Untagged
@@ -432,6 +438,21 @@ MonoBehaviour:
   - {fileID: 1735309791}
   - {fileID: 2047311062}
   delay: 2
+--- !u!114 &676098121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676098116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092370dbce2c42d68ed6047b1965d110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 77477999}
+  prefab: {fileID: 4429351370155250701, guid: e7e90caebde437b4b80caf6a3b290bc8, type: 3}
+  poolSize: 30
 --- !u!95 &1059917790 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2696589512523127576, guid: 736abe9211a0947df80edc3c2df6391a,
@@ -553,6 +574,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4429351370155250696, guid: e7e90caebde437b4b80caf6a3b290bc8,
         type: 3}
+    - target: {fileID: 4987052803569189477, guid: 736abe9211a0947df80edc3c2df6391a,
+        type: 3}
+      propertyPath: core.FireComponent._bulletPool
+      value: 
+      objectReference: {fileID: 676098121}
     - target: {fileID: 4987052803569189477, guid: 736abe9211a0947df80edc3c2df6391a,
         type: 3}
       propertyPath: core.FireComponent.charges.value
