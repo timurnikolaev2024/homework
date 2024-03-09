@@ -10,4 +10,14 @@
         public const string IsAlive = nameof(IsAlive);
         public const string Animator = nameof(Animator);
     }
+
+    public static class WeaponAPI
+    {
+        public const string Config = nameof(Config);
+    }
+
+    public static class ItemAPI
+    {
+        public const string PickUp = nameof(PickUp);
+    }
 }
