@@ -21,7 +21,9 @@ namespace Object
         
         [Section] public FireComponent FireComponent;
 
-        public void Compose()
+        [Section] public PickUpComponent PickUpComponent;
+
+        public void Compose(Character_Physics physics)
         {
             moveComponent.Compose(transform);
             rotateMechanics = new RotateMechanics(transform, moveComponent.MoveDirection, moveComponent.IsMoving);
@@ -31,16 +33,19 @@ namespace Object
                 it.Compose();
                 it.fireCondition.Append(moveComponent.IsMoving.AsNot());
             });
+            PickUpComponent.Compose(physics.triggerDispatcher);
         }
 
         public void OnEnable()
         {
             healthComponent.OnEnable();
+            PickUpComponent.Enable();
         }
 
         public void OnDisable()
         {
             healthComponent.OnDisable();
+            PickUpComponent.Disable();
         }
 
         public void Update()

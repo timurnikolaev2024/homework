@@ -14,11 +14,12 @@ namespace Object
     {
         [Section] public Character_Core core;
         [Section] public Character_View view;
+        [Section] public Character_Physics physics;
 
         private void Awake()
         {
             Compose();
-            core.Compose();
+            core.Compose(physics);
             view.Compose(core);
         }
 
