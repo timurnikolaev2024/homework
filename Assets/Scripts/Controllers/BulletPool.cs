@@ -19,7 +19,7 @@ namespace Controllers
         {
             for (int i = 0; i < poolSize; i++)
             {
-                GameObject obj = Instantiate(prefab);
+                GameObject obj = Instantiate(prefab, parent);
                 obj.SetActive(false);
                 objectPool.Add(obj);
             }
@@ -37,7 +37,7 @@ namespace Controllers
                 }
             }
 
-            GameObject newObj = Instantiate(prefab);
+            GameObject newObj = Instantiate(prefab, parent);
             objectPool.Add(newObj);
             return newObj;
         }
