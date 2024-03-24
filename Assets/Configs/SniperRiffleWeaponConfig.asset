@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91934816119f4f8eb793936998013cec, type: 3}
   m_Name: SniperRiffleWeaponConfig
   m_EditorClassIdentifier: 
-  sortingOrder: 2
+  weaponPrefab: {fileID: 8313247100451788960, guid: c68941c8e2cc58c41823effacc2f333a,
+    type: 3}
+  weaponTransformData:
+    position: {x: 0, y: 0, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  sortingOrder: 1
+  characterAnimatorController: {fileID: 0}
+  weaponIconBase: {fileID: 0}
+  weaponIconRounded: {fileID: 0}
+  bulletPrefab: {fileID: 4429351370155250696, guid: e7e90caebde437b4b80caf6a3b290bc8,
+    type: 3}
+  magazineCapacity: 10

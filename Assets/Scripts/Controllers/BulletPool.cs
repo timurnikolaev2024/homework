@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class BulletPool : MonoBehaviour//очень просто пул, понимаю что надо сделать на очередях по хорошему
+    public class BulletPool : MonoBehaviour, IBulletPool//очень просто пул, понимаю что надо сделать на очередях по хорошему
     {
         [SerializeField] private Transform parent;
         public GameObject prefab;
@@ -40,6 +40,14 @@ namespace Controllers
             GameObject newObj = Instantiate(prefab, parent);
             objectPool.Add(newObj);
             return newObj;
+        }
+
+        public void Spawn(Vector3 position, Quaternion rotation)
+        {
+            var bullet = GetObjectFromPool();
+
+            bullet.gameObject.transform.position = position;
+            bullet.gameObject.transform.rotation = rotation;
         }
 
         private void Test(GameObject gameObject)

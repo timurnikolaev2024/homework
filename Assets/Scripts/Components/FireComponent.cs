@@ -20,7 +20,6 @@ namespace Components
         public AtomicEvent secondPhaseFireEvent;
 
         public Transform firePoint;
-        public MonoBehaviour bulletPrefab;
         public AtomicVariable<int> charges = new(10);
         
         public FireAction fireAction;
@@ -34,7 +33,7 @@ namespace Components
             fireCondition.Append(this.charges.AsFunction(it => it.Value > 0));
             
             this.fireAction.Compose(this.bulletAction, this.charges, this.fireCondition, this.firstPhaseFireEvent);
-            this.bulletAction.Compose(this.firePoint, this.bulletPrefab, _bulletPool);
+            this.bulletAction.Compose(this.firePoint, _bulletPool);
             weaponRaiseAndShootAction.Compose(this.bulletAction, _test.shootEvent2, secondPhaseFireEvent);
         }
 

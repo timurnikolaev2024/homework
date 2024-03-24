@@ -19,7 +19,7 @@ namespace Object
         private void Awake()
         {
             Compose();
-            core.Compose(physics);
+            core.Compose(physics, this);
             view.Compose(core);
         }
 

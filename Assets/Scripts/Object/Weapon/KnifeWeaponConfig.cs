@@ -9,9 +9,10 @@ namespace Object.Weapon
     )]
     public class KnifeWeaponConfig : WeaponConfing
     {
-        protected internal override IWeaponController instantiateWeaponController(IAtomicObject owner)
+
+        protected internal override IWeaponController instantiateWeaponController(IAtomicObject owner, WeaponObjectsLOL.Weapon weapon)
         {
-            return new KnifeWeaponController(owner);
+            throw new System.NotImplementedException();
         }
     }
 }

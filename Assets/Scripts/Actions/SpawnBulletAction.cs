@@ -12,13 +12,11 @@ namespace Actions
     public class SpawnBulletAction : IAtomicAction
     {
         private Transform firePoint;
-        private MonoBehaviour bulletPrefab;
         private BulletPool bulletPool;
 
-        public void Compose(Transform firePoint, MonoBehaviour bulletPrefab, BulletPool bulletPool)
+        public void Compose(Transform firePoint, BulletPool bulletPool)
         {
             this.firePoint = firePoint;
-            this.bulletPrefab = bulletPrefab;
             this.bulletPool = bulletPool;
         }
 

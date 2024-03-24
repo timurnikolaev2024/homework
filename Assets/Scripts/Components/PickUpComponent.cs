@@ -8,25 +8,25 @@ namespace Components
     [Serializable]
     public class PickUpComponent : IEnable, IDisable, IDisposable
     {
-        [Section] public PickUpWeaponComponent weaponComponent;
+        [Section] public PickUpWeaponComponent pickUpWeaponComponent;
 
-        public void Compose(TriggerDispatcher trigger)
+        public void Compose(WeaponComponent weaponComponent, TriggerDispatcher trigger)
         {
-            weaponComponent.Compose(trigger);
+            pickUpWeaponComponent.Compose(weaponComponent, trigger);
         }
         public void Dispose()
         {
-            weaponComponent?.Dispose();
+            pickUpWeaponComponent?.Dispose();
         }
 
         public void Enable()
         {
-            weaponComponent.Enable();
+            pickUpWeaponComponent.Enable();
         }
 
         public void Disable()
         {
-            weaponComponent.Disable();
+            pickUpWeaponComponent.Disable();
         }
     }
 }

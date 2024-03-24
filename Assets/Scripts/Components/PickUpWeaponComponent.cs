@@ -16,9 +16,9 @@ namespace Components
         public PickUpWeaponAction pickUpAction;
         private PickUpWeaponMechanics pickUpWeaponMechanics;
 
-        public void Compose(TriggerDispatcher triggerDispatcher)
+        public void Compose(WeaponComponent weaponComponent, TriggerDispatcher triggerDispatcher)
         {
-            pickUpAction.Compose(pickUpEvent, pickUpFailed);
+            pickUpAction.Compose(weaponComponent.weaponProvider, pickUpEvent, pickUpFailed);
             pickUpWeaponMechanics = new PickUpWeaponMechanics(triggerDispatcher, pickUpAction);
         }
         

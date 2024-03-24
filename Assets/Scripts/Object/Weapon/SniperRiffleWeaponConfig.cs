@@ -1,4 +1,5 @@
 using Atomic.Objects;
+using Object.Weapon.WeaponObjectsLOL;
 using UnityEngine;
 
 namespace Object.Weapon
@@ -9,9 +10,11 @@ namespace Object.Weapon
     )]
     public class SniperRiffleWeaponConfig : WeaponConfing
     {
-        protected internal override IWeaponController instantiateWeaponController(IAtomicObject owner)
+        public Bullet bulletPrefab;
+        public int magazineCapacity = 10;
+        protected internal override IWeaponController instantiateWeaponController(IAtomicObject owner, WeaponObjectsLOL.Weapon weapon)
         {
-            throw new System.NotImplementedException();
+            return new SniperRiffleWeaponController(owner, weapon as SniperRiffle_Weapon, this);
         }
     }
 }

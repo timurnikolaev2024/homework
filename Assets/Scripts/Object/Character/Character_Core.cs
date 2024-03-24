@@ -1,4 +1,5 @@
 using System;
+using Atomic.Behaviours;
 using Atomic.Elements;
 using Atomic.Objects;
 using Components;
@@ -23,7 +24,9 @@ namespace Object
 
         [Section] public PickUpComponent PickUpComponent;
 
-        public void Compose(Character_Physics physics)
+        [Section] public WeaponComponent weaponComponent;
+
+        public void Compose(Character_Physics physics, AtomicBehaviour owner)
         {
             moveComponent.Compose(transform);
             rotateMechanics = new RotateMechanics(transform, moveComponent.MoveDirection, moveComponent.IsMoving);
@@ -33,7 +36,8 @@ namespace Object
                 it.Compose();
                 it.fireCondition.Append(moveComponent.IsMoving.AsNot());
             });
-            PickUpComponent.Compose(physics.triggerDispatcher);
+            weaponComponent.Compose(owner);
+            PickUpComponent.Compose(weaponComponent, physics.triggerDispatcher);
         }
 
         public void OnEnable()
